@@ -274,6 +274,13 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(197, 155, 55, 0.2);
   transition: transform 0.3s ease;
+  
+  /* Centramos el contenido */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
+  text-align: center; /* Centra el texto */
 }
 
 .feature:hover {
