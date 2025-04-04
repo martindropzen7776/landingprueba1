@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Casino Royale - Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="background"></div>
+    <div class="roulette-wheel">
+      <div class="roulette-center"></div>
+    </div>
+    <div class="card-symbols"></div>
+    <div class="chips-container"></div>
+    <div class="container">
+      <div class="logo">
+        <span class="crown">♔</span>
+        <h1>Casino Royale</h1>
+        <span class="crown">♔</span>
+      </div>
+      <div class="jackpot-counter">
+        <span class="jackpot-label">JACKPOT ACTUAL</span>
+        <div class="jackpot-amount">$1,000,000</div>
+      </div>
+      <button class="main-button">
+        <span class="button-shine"></span>
+        ¡Únete Ahora!
+      </button>
+      <div class="features">
+        <div class="feature">
+          <span class="feature-icon">♠</span>
+          <h3>Bono de Bienvenida</h3>
+          <p>200% en tu primer depósito</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">♦</span>
+          <h3>Juegos VIP</h3>
+          <p>Acceso exclusivo 24/7</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">♣</span>
+          <h3>Premios Diarios</h3>
+          <p>Giros gratis cada día</p>
+        </div>
+      </div>
+      <p class="description">
+        Sumérgete en una experiencia única donde el lujo y la emoción se encuentran. 
+        Nuestro exclusivo ambiente combina la elegancia del diseño clásico con la 
+        adrenalina del juego moderno. ¿Estás listo para ser parte de la élite?
+      </p>
+      <div class="footer">
+        <div class="payment-methods">💳 Métodos de pago seguros</div>
+        <div class="certifications">🔒 Casino Certificado</div>
+      </div>
+    </div>
+    <script>
+      function createSymbols() {
+        const symbols = ['♠', '♣', 'A', '♥', '♦', 'K', 'Q', 'J'];
+        const container = document.querySelector('.card-symbols');
+        container.innerHTML = '';
+        
+        for (let i = 0; i < 64; i++) {
+          const symbol = document.createElement('div');
+          symbol.className = 'symbol';
+          symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          symbol.style.transform = `rotate(${Math.random() * 360}deg)`;
+          container.appendChild(symbol);
+        }
+      }
+
+      function createChips() {
+        const colors = ['red', 'blue', 'green', 'black'];
+        const container = document.querySelector('.chips-container');
+        container.innerHTML = '';
+        
+        for (let i = 0; i < 20; i++) {
+          const chip = document.createElement('div');
+          chip.className = `chip ${colors[Math.floor(Math.random() * colors.length)]}`;
+          chip.style.left = `${Math.random() * 100}%`;
+          chip.style.top = `${Math.random() * 100}%`;
+          chip.style.animationDelay = `${Math.random() * 5}s`;
+          container.appendChild(chip);
+        }
+      }
+
+      function animateJackpot() {
+        const jackpotElement = document.querySelector('.jackpot-amount');
+        let current = 950000;
+        const target = 1000000;
+        const increment = 1000;
+        const interval = 100;
+
+        const animation = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(animation);
+          }
+          jackpotElement.textContent = '$' + current.toLocaleString();
+        }, interval);
+      }
+
+      createSymbols();
+      createChips();
+      animateJackpot();
+      setInterval(createSymbols, 5000);
+      setInterval(createChips, 10000);
+    </script>
+  </body>
+</html>
